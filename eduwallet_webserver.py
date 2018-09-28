@@ -1,27 +1,25 @@
 #!/usr/bin/env python3
 
-# Uses the flask framework:
-# pip3 install flask
+# Main code for serving pages and some REST api functions
+#
+# Uses the Flask web framework
+# Uses Amazon Cognito (boto3 library)
 
 import sys, random
-import requests
-import json
-import boto3
+import requests, json
+import datetime, time
+import decimal
 from flask import Flask, url_for, abort, request, redirect
 from flask import render_template, session, jsonify
 from flask_sslify import SSLify
-import datetime
-import time
-import decimal
-from eduwallet_config import VERSION, URL, SSL_CONTEXT, APPSECRET, COGNITO
+import boto3
+from eduwallet_config import VERSION, NODEURL, SSL_CONTEXT, APPSECRET, COGNITO
 
 app = Flask(__name__)
 # sslify = SSLify(app)
 
 # secret_key needed for session support in Flask
 app.secret_key = APPSECRET
-
-print()
 
 # Round bitcoin amounts to 8 decimals (satoshis)
 # only needed once when going from float values
@@ -38,7 +36,7 @@ def getNode(method, *args):
         "method": method,
         "params": list(args),
     }
-    r = requests.post(URL, data=json.dumps(payload), headers=headers).json()
+    r = requests.post(NODEURL, data=json.dumps(payload), headers=headers).json()
     if r.get('error'):
         print('API error:', r['error'])
     return r

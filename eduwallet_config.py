@@ -1,11 +1,11 @@
-# Common config for chainview
+# Common config for eduwallet
 
 VERSION = '1.0'
 GITHUB = 'https://github.com/bitcoinedu-io/eduwallet'
 
 rpc_user = 'user'
 rpc_pass = 'pass'
-URL = 'http://%s:%s@localhost:8332' % (rpc_user, rpc_pass)
+NODEURL = 'http://%s:%s@localhost:8332' % (rpc_user, rpc_pass)
 
 sslfiles = '/.../ssl/current/'
 SSL_CONTEXT = (sslfiles+'ssl.crt',sslfiles+'ssl.key')
