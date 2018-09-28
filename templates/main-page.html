@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block pagecontent %}
+      <div class="userinfo">
+        <h2>Bitcoin Edu Web Wallet</h2>
+	<table class="table">
+	  <tr><td>Name</td><td>{{ session['name'] }}</td></tr>
+	  <tr><td>Email</td><td>{{ session['email'] }}</td></tr>
+	  <tr><td>Bitcoin adress</td><td><a href="http://chain.port0.org:5000/address/{{ session['addr'] }}" target="_blank"><span id="payfrom">{{ session['addr'] }}</span></a></td></tr>
+	  <tr><td>Balance</td><td><span id="balance">{{ balance }}</span> BTE</td></tr>
+	</table>
+      </div>
+
+      <div class="transactions">
+	<h3>Transactions</h3>
+	<p>For a list of transactions, go to the Chainview block explorer page for your address:
+	  <a href="http://chain.port0.org:5000/address/{{ session['addr'] }}"
+	     target="_blank">{{ session['addr'] }}</a>
+	  (pending transactions are currently not visible).
+      </div>
+{% endblock %}

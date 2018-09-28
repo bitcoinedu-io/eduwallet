@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>EduWallet - Bitcoin Edu Web Wallet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">EduWallet</h5>
+      <nav class="my-2 my-md-0 mr-auto">
+        <a class="p-2 text-dark border-left {% if page=='home' %}font-weight-bold{% endif %}" href="{{url_for('main_page')}}">Home</a>
+        <a class="p-2 text-dark border-left {% if page=='send' %}font-weight-bold{% endif %}" href="{{url_for('send')}}">Send BTE</a>
+        <a class="p-2 text-dark border-right border-left {% if page=='receive' %}font-weight-bold{% endif %}" href="{{url_for('receive')}}">Receive BTE</a>
+      </nav>
+      <p class="my-0 mx-3">{{ session['name'] }}</p>
+      <a class="btn btn-outline-primary" href="{{url_for('logout')}}">Logout</a>
+    </div>
+    
+    <main role="main" class="container">
+    {% block pagecontent %}
+    {% endblock %}
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename="wallet.js")}}"></script>
+  </body>
+</html>
