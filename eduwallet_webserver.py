@@ -203,7 +203,8 @@ def makepayment():
     payto = par['payto']
     amount = float2dec(par['amount'])
     inputs, balance = getinputs_balance(payfrom)
-    fee = float2dec(0.00001)
+    # Scale fee with inputs, assume one input is max 500 bytes
+    fee = float2dec(0.00001 * int((len(inputs)+1)/2))
     change = balance - amount - fee
     if change < 0.0:
         amount = balance - fee
