@@ -5,7 +5,7 @@
 	<table class="table">
 	  <tr><td>Name</td><td>{{ session['name'] }}</td></tr>
 	  <tr><td>Email</td><td>{{ session['email'] }}</td></tr>
-	  <tr><td>Bitcoin adress</td><td><a href="http://eduexplorer.port0.org/address/{{ session['addr'] }}" target="_blank"><span id="payfrom">{{ session['addr'] }}</span></a></td></tr>
+	  <tr><td>Bitcoin adress</td><td>{{ session['addr'] }}<span id="payfrom">{{ session['addr'] }}</span></td></tr>
 	  <tr><td>Balance</td><td><span id="balance">{{ balance }}</span> BTE</td></tr>
 	</table>
       </div>
@@ -14,7 +14,6 @@
 	<h3>Transactions</h3>
 	<p>For a list of transactions, go to the Chainview block explorer page for your address:
 	  <a href="http://eduexplorer.port0.org/address/{{ session['addr'] }}"
-	     target="_blank">{{ session['addr'] }}</a>
-	  (pending transactions are currently not visible).
+	     target="_blank">{{ session['addr'] }}</a>.
       </div>
 {% endblock %}

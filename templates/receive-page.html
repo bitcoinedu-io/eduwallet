@@ -1,10 +1,17 @@
 {% extends "layout.html" %}
 {% block pagecontent %}
+   <div class="userinfo">
     <h2>Receive BTE</h2>
     <dl><dt>To receive BTE simply ask someone to send BTE to your Bitcoin Edu address:</dt>
-      <dd><a href="http://eduexplorer.port0.org/address/{{ session['addr'] }}"
-	     target="_blank">{{ session['addr'] }}</a></dd>
+      <dd>{{ session['addr'] }}</dd>
     </dl>
-    <p>Note: on average it takes several minutes for a transaction to be included in the next block - be patient!
+    <p>Note: on average it takes 10 minutes for a transaction to be included in the next block - be patient!
     </p>
+   </div>
+      <div class="transactions">
+	<h3>Transactions</h3>
+	<p>For a list of transactions, go to the Chainview block explorer page for your address:
+	  <a href="http://eduexplorer.port0.org/address/{{ session['addr'] }}"
+	     target="_blank">{{ session['addr'] }}</a>.
+      </div>
 {% endblock %}
