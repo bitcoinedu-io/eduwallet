@@ -11,7 +11,8 @@ import datetime, time
 import decimal
 from flask import Flask, url_for, abort, request, redirect
 from flask import render_template, session, jsonify
-from flask_sslify import SSLify
+# skip SSL standalone, use certbot/apache2 instead
+# from flask_sslify import SSLify
 import boto3
 from eduwallet_config import VERSION, NODEURL, SSL_CONTEXT, APPSECRET, COGNITO
 
@@ -62,9 +63,9 @@ def getinputs_balance(addr):
 # Returns bitcoin address.
 
 def get_bitcoin_address(email):
-    addr_list = getNodeResults('getaddressesbyaccount', email)
-    if len(addr_list) > 0:
-        addr = addr_list[0]
+    addr_list = getNodeResults('getaddressesbylabel', email)
+    if addr_list and len(addr_list) > 0:
+        addr = list(addr_list)[0]
     else:
         addr = getNodeResults('getnewaddress', email, 'bech32')
     return addr
@@ -216,7 +217,7 @@ def makepayment():
     if r.get('error'):
         return jsonify(r)
     hex = r['result']
-    r = getNode('signrawtransaction', hex)
+    r = getNode('signrawtransactionwithwallet', hex)
     if r.get('error'):
         return jsonify(r)
     signed = r['result']
